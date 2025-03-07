@@ -1,3 +1,21 @@
 ﻿body
 {
 }
+
+.header {
+    margin: 0 auto;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    padding-left: 5px;
+    left: 0;
+}
+
+.title {
+    text-align: center;
+    font-family: "kanit", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
