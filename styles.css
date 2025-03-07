@@ -68,6 +68,21 @@
     
 
 }
+/* for the footer */
+.flex-container {
+    display: flex;
+    color: gainsboro;
+    justify-content: space-around;
+    background-color: aqua;
+  }
+  footer {
+    background-color: #333;
+    text-align: center;
+    padding: 1 rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
 
 @media(max-width: 780px){
     .contanir{
