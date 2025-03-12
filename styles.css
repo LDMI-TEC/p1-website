@@ -3,6 +3,43 @@
     padding-top: 30px;
  }
 
+/* Removes default cursor*/
+html, body {
+    cursor: none;
+}
+
+/* Positions the cursor*/
+.custom-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.site-wide {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.site-wide .pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+    transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
+}
+
+.site-wide.active .pointer {
+    width: 20px;
+    height: 20px;
+}
+
 .header {
     margin: 0 auto;
 }
