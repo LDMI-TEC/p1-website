@@ -1,0 +1,191 @@
+/* basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  border-bottom: 2px solid black;
+  padding: 10px;
+}
+
+#pochama {
+  width: 80px;
+  height: 80px;
+}
+
+/* nav stuff */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  right: 0;
+  list-style: none;
+}
+
+.navbar ul li {
+  padding: 0 10px;
+  font-size: large;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar ul li a:hover {
+  color: blue;
+  text-decoration-line: underline;
+}
+
+/*main container*/
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 2200px;
+  margin: 20px auto;
+}
+
+.pokemon-frames {
+  display: none;
+}
+
+#score {
+  display: none;
+}
+
+#game-timer {
+  display: none;
+}
+
+#time-lives {
+  display: flex;
+  flex-direction: row;
+}
+
+#time-lives ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding-left: 400px;
+}
+
+.heart {
+  display: none;
+  width: 25px;
+}
+
+#quiz-promt {
+  display: none;
+  align-self: center;
+  padding: 10px 0;
+}
+
+.pokemon-container {
+  border: 1px solid teal;
+  border-radius: 5%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px 20px;
+  box-shadow: 10px -16px teal;
+}
+
+/* When hovering */
+.pokemon-container:hover {
+  border-color: darkorange;
+  box-shadow: 10px -16px darkorange;
+  background-color: #0080801a;
+}
+
+/* When Clicking*/
+.pokemon-container:active {
+  transform: scale(0.95);
+  box-shadow: 10px -16px darkgreen;
+  border-color: darkgreen;
+}
+
+.random-button {
+  background-color: chocolate;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-self: center;
+  max-width: 60vw;
+}
+
+.random-button:active {
+  background-color: #d2691e; /* Darker chocolate */
+  transform: scale(1.1); /* Slightly bigger */
+  box-shadow: 0px 2px 10px rgba(255, 165, 0, 0.8); /* Glowing effect */
+}
+
+/*side bar */
+.sidebar {
+  width: 200px;
+  background-color: violet;
+  padding: 20px;
+  min-height: 70vh;
+  border: 1px solid black;
+}
+
+.left-sidebar {
+  text-align: left;
+}
+
+.right-sidebar {
+  text-align: right;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sprite {
+  display: none;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.poke-facts {
+  display: none;
+}
+
+#pokemon-cry {
+  padding-top: 5%;
+  display: none;
+}
+
+footer {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: blue;
+}
