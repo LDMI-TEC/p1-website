@@ -4,8 +4,8 @@
  }
 
 /* Removes default cursor*/
-html, body {
-    cursor: none;
+* {
+    cursor: none !important;
 }
 
 /* Positions the cursor*/
@@ -14,13 +14,19 @@ html, body {
     top: 0;
     left: 0;
     display: none;
+    position: absolute;
 }
 
 .site-wide {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 2px solid rgb(0, 0, 0);
+    pointer-events: none;
+}
+
+body:has(a:hover) .site-wide{
+    display: none;
 }
 
 .site-wide .pointer {
