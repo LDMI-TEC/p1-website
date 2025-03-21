@@ -1,0 +1,43 @@
+# Ignore binaries and build output
+bin/
+obj/
+publish/
+
+# ignore app settings and similar
+appsettings.Development.json
+appsettings.json
+Properties/launchSettings.json
+
+# Ignore HTTP request files
+poke-poke.http
+
+# Ignore Visual Studio and Rider files
+*.suo
+*.user
+*.vs/
+.vscode/
+
+# Ignore NuGet packages and dependencies
+*.nupkg
+packages/
+project.nuget.cache
+project.assets.json
+
+# Ignore build artifacts
+*.dll
+*.exe
+*.pdb
+*.log
+
+# Ignore Rider and JetBrains files
+.idea/
+*.iml
+
+# docker file
+Dockerfile
+Dockerfile.sqlserver
+docker-compose.yml
+.dockerignore
+
+# Ignore DBSetup files
+DBSetup/

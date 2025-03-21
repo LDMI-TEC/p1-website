@@ -1,0 +1,8 @@
+#score-list {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#score-list {
+  list-style: decimal;
+  padding-left: 10px;
+}

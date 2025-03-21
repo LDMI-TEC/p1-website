@@ -1,0 +1,138 @@
+﻿body {
+    box-sizing: border-box;
+    padding-top: 30px;
+ }
+
+/* Removes default cursor*/
+* {
+    cursor: none !important;
+}
+
+/* Positions the cursor*/
+.custom-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    position: absolute;
+}
+
+.site-wide {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 0, 0);
+    pointer-events: none;
+}
+
+body:has(a:hover) .site-wide{
+    display: none;
+}
+
+.site-wide .pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+    transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
+}
+
+.site-wide.active .pointer {
+    width: 20px;
+    height: 20px;
+}
+
+.header {
+    margin: 0 auto;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    padding-left: 5px;
+    left: 0;
+}
+
+.title {
+    text-align: center;
+    font-family: "kanit", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+         /* Novbar */
+.contanir{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 10em;
+}
+.navi ul{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #fff;
+    gap: 10em;
+    background-color: rgba(245, 73, 144);
+    border-radius: 50px;
+    padding: 10px;
+    
+}
+
+
+.nav li{
+    font-size: 25px;
+    border-radius: 50px;
+    padding: 20px;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+    
+}
+
+.nav li a{
+    text-decoration: none;
+    line-height: 0;
+    font-size: 1rem;
+    margin: 4px;
+    color: #fff;
+
+}
+
+.nav li:hover{
+    filter: drop-shadow(0px 26px 22px #000000);
+    transform: translateY(-3px);
+    
+
+}
+/* for the footer */
+.flex-container {
+    display: flex;
+    color: gainsboro;
+    justify-content: space-around;
+    background-color: aqua;
+  }
+  footer {
+    background-color: #333;
+    text-align: center;
+    padding: 1 rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+
+@media(max-width: 780px){
+    .contanir{
+        display: flex;
+        margin-top: 10em;
+        
+    }
+    .navi ul{
+        gap: 0em;
+    }
+}
