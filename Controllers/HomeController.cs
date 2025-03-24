@@ -17,7 +17,6 @@ namespace poke_poke.Controllers
         public IActionResult Index()
         {
             var filePath = Path.Combine(_env.ContentRootPath, "index.html");
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../index.html");
             return PhysicalFile(filePath, "text/html");
         }
     }
