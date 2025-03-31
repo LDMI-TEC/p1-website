@@ -1,5 +1,6 @@
 import { setLogoAndPochama } from "./style/pochama.js";
 import { displayScores } from "./leaderboard/scores.js";
+import { addCursor } from "../cursor.js"; 
 
 // search for your score form
 const searchForm = document.getElementById("search-score");
@@ -8,6 +9,7 @@ const scoreList = document.getElementById("score-list");
 
 // run at startup functions
 setLogoAndPochama();
+addCursor();
 displayScores();
 
 // event handlers

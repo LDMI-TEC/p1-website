@@ -1,6 +1,6 @@
-import { createPokemonSet } from "../objectAndFetch/pokefactory.js";
+import { createPokemonSet } from "./objectAndFetch/pokefactory.js";
 import { getRandomQuestion } from "./gameModes.js";
-import { getTokenOnGameStart } from "../objectAndFetch/fetchTokenAndScore.js";
+import { getTokenOnGameStart } from "./objectAndFetch/fetchTokenAndScore.js";
 import { submit } from "./submitScore.js";
 
 // pokemon frames
