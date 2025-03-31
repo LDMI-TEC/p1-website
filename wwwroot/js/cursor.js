@@ -16,7 +16,7 @@ document.addEventListener('mousemove', TrackCursor)
 function TrackCursor(evt) {
     const w = site_wide_cursor.clientWidth;
     const h = site_wide_cursor.clientHeight;
-    site_wide_cursor.style.transform = `translate(${evt.clientX - w/2}px, ${evt.clientY -h/2}px)`;
+    site_wide_cursor.style.transform = `translate(${evt.clientX}px, ${evt.clientY}px)`;
 }
 
 //Adds and removes the active class on click

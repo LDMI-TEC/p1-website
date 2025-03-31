@@ -1,6 +1,9 @@
 ﻿body {
+    margin: 0;
+    overflow-x: hidden;
     box-sizing: border-box;
     padding-top: 30px;
+    background-color: #586F7C;
  }
 
 /* Removes default cursor*/
@@ -13,37 +16,27 @@
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
-    position: absolute;
-}
-
-.site-wide {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    border: 2px solid rgb(0, 0, 0);
+    display: none;
     pointer-events: none;
 }
 
-body:has(a:hover) .site-wide{
-    display: none;
+.site-wide img{
+    max-width: 100%;
+    max-height: 100%;
 }
 
-.site-wide .pointer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: black;
-    transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
+.site-wide.active {
+    width: 35px;
+    height: 35px;
 }
 
-.site-wide.active .pointer {
-    width: 20px;
-    height: 20px;
+body:has(a:hover) #cursorDefault {
+    filter: drop-shadow(2px 0 0 #ffffff) 
+        drop-shadow(0 2px 0 #ffffff)
+        drop-shadow(-2px 0 0 #ffffff) 
+        drop-shadow(0 -2px 0 #ffffff);
 }
 
 .header {
@@ -79,10 +72,11 @@ body:has(a:hover) .site-wide{
     justify-content: center;
     color: #fff;
     gap: 10em;
-    background-color: rgba(245, 73, 144);
-    border-radius: 50px;
+    background-color: #B8DBD9;
+    border: solid 2px black;
+    border-radius: 5px;
     padding: 10px;
-    
+    list-style: none;
 }
 
 
@@ -100,7 +94,7 @@ body:has(a:hover) .site-wide{
     line-height: 0;
     font-size: 1rem;
     margin: 4px;
-    color: #fff;
+    color: rgb(0, 0, 0);
 
 }
 
@@ -110,27 +104,114 @@ body:has(a:hover) .site-wide{
     
 
 }
+
+/*for slide show*/
+.about-section{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: flex-start;
+    }     
+    .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin-top: auto;
+    }
+    .prev, .next{
+    cursor:pointer;
+    position: absolute;
+    top:auto;
+    width: auto;
+    bottom: auto;
+    margin-top: 50px;
+    color: white;
+    font-weight:bold;
+    font-size: 18px;
+    transition:0.6 ease;
+    border-radius: 0 3px 3px 0;
+    user-select:none;
+    }
+
+    .next{
+        right:0;
+        border-radius:3px 0 0 3px;
+    }
+    .prev:hover, .next:hover{
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .text{
+        color:#f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width:100%;
+        text-align: center;
+    }
+
+    .numbertext{
+        color:black;
+        font-size: 12px;
+        padding:8px 12px;
+        position:absolute;
+        top: 0;
+    }
+    .dot{
+    justify-content: space-between; 
+    align-items: flex-start; 
+    display: flex;
+    cursor:pointer;
+    height:15px;
+    width:15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius:50%;
+    
+    transition:background-color 0.6s ease;
+    }
+    .active, .dot:hover{
+    background-color:#717171;
+    }
+    .fade{
+    animation-name:fade;
+    animation-duration:1.5s;
+    }
+    @keyframes fade{
+    from{opacity:.4}
+    to{opacity:1}
+    }
+    @media only screen and (max-width:300px){
+    .prev,.next,.text{font-size:11px}
+        }
 /* for the footer */
 .flex-container {
     display: flex;
-    color: gainsboro;
+    color: rgb(160, 160, 179);
     justify-content: space-around;
-    background-color: aqua;
+    background-color: #B8DBD9;
+    border-top: solid 2px black;
+    margin-top: 5px;
   }
-  footer {
+  .footer {
     background-color: #333;
     text-align: center;
     padding: 1 rem 0;
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
   }
 
+  .footer {
+    background-color: #778ba3;
+    border-top: solid 2px #000000;
+    padding-top: 5px;
+  }
 @media(max-width: 780px){
     .contanir{
         display: flex;
-        margin-top: 10em;
-        
+        margin-top: 10em;        
     }
     .navi ul{
         gap: 0em;
