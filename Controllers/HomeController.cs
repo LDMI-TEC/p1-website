@@ -5,7 +5,7 @@ namespace poke_poke.Controllers
     [Route("/")]
     public class HomeController : Controller
     {
-        // IWebHostEnviroment is the path to the wwwroot folder
+        // IWebHostEnvironment is the path to the wwwroot folder
         private readonly IWebHostEnvironment _env;
 
         public HomeController(IWebHostEnvironment env)

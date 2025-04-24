@@ -78,14 +78,42 @@ namespace poke_poke.Controllers
             }
 
             [HttpPost]
-            public async Task<ActionResult> PostJoke(Joke joke)
+            public async Task<ActionResult> PostJoke(JokeCreateDto jokeDto)
             {
-                joke.createAt = DateTime.Now;
-                joke.likes = 0;
-                joke.dislikes = 0;
-                joke.isApproved = false;
+                if (string.IsNullOrEmpty(jokeDto.authorName) || string.IsNullOrEmpty(jokeDto.joke)) 
+                {
+                    return BadRequest("Author name and joke is required");
+                }
 
-                _context.jokes.Add(joke);
+                // find if author already exists in the db
+                // if not create a new author with the information given in the request
+                var author = await _context.authors.FirstOrDefaultAsync(x => x.name == jokeDto.authorName);
+
+                if (author == null)
+                {
+                    author = new Author
+                    {
+                        name = jokeDto.authorName,
+                        age = jokeDto.authorAge ?? 40
+                    };
+
+                    _context.authors.Add(author);
+                    await _context.SaveChangesAsync();
+                }
+
+                // create joke
+                var joke = new Joke
+                {
+                    authorId = author.id,
+                    categoryId = jokeDto.categoryId,
+                    joke = jokeDto.joke,
+                    createAt = DateTime.Now,
+                    likes = 0,
+                    dislikes = 0,
+                    isApproved = false
+                };
+
+                _context.Add(joke);
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetJoke), new { id = joke.id }, joke);
