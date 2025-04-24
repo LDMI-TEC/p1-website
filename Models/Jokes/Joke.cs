@@ -2,17 +2,17 @@ namespace poke_poke.Models.Jokes
 {
     public class Joke
     {
-        public int id { get; set; }
-        public int authorId { get; set; } 
-        public int categoryId { get; set; }
-        public string? joke { get; set; }
-        public DateTime createAt { get; set; }
-        public bool isApproved { get; set; }
-        public int likes { get; set; }
-        public int dislikes { get; set; }
+        public int Id { get; set; }
+        public int AuthorId { get; set; }
+        public int CategoryId { get; set; }
+        public string? JokeText { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool IsApproved { get; set; }
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
 
         // navigation properties
-        public Author? author { get; set; }
-        public Category? category{ get; set; }
+        public Author? Author { get; set; }
+        public Category? Category{ get; set; }
     }
 }
