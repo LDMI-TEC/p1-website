@@ -117,8 +117,9 @@ namespace poke_poke.Controllers
                 _context.Add(joke);
                 await _context.SaveChangesAsync();
 
-                await _context.Entry(joke).Reference(j => joke.Author).LoadAsync();
-                await _context.Entry(joke).Reference(j => joke.Category).LoadAsync();
+                // load related entities for response
+                await _context.Entry(joke).Reference(j => j.Author).LoadAsync();
+                await _context.Entry(joke).Reference(j => j.Category).LoadAsync();
 
                 return CreatedAtAction(nameof(GetJoke), new { id = joke.Id }, MapJokeToDto(joke));
             }
