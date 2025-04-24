@@ -81,7 +81,7 @@ namespace poke_poke.Controllers
             [HttpPost]
             public async Task<ActionResult> PostJoke(JokeCreateDto jokeDto)
             {
-                if (string.IsNullOrEmpty(jokeDto.AuthorName) || string.IsNullOrEmpty(jokeDto.Joke)) 
+                if (string.IsNullOrEmpty(jokeDto.AuthorName) || string.IsNullOrEmpty(jokeDto.JokeText)) 
                 {
                     return BadRequest("Author name and joke is required");
                 }
@@ -107,7 +107,7 @@ namespace poke_poke.Controllers
                 {
                     AuthorId = author.Id,
                     CategoryId = jokeDto.CategoryId,
-                    JokeText = jokeDto.Joke,
+                    JokeText = jokeDto.JokeText,
                     CreatedAt = DateTime.Now,
                     Likes = 0,
                     Dislikes = 0,
