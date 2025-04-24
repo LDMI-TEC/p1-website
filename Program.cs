@@ -19,6 +19,10 @@ builder.Services.AddDbContext<GameScoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddDbContext<JokeAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JokeConnection"))
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,7 +39,7 @@ app.UseStaticFiles();
 // enable routing
 app.UseRouting();
 
-// enalbes authorization
+// enables authorization
 app.UseAuthorization();
 
 // map Controller routes directly 

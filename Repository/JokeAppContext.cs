@@ -23,47 +23,47 @@ namespace poke_poke.Repository
                 authorModel.ToTable("authors");    
 
                 // defines what part of the model is the primary key
-                authorModel.HasKey(x => x.id);
+                authorModel.HasKey(x => x.Id);
                 
                 // maps the model properties to the columns in the database
-                authorModel.Property(x => x.id).HasColumnName("id");
-                authorModel.Property(x => x.name).HasColumnName("name");
-                authorModel.Property(x => x.age).HasColumnName("age");
+                authorModel.Property(x => x.Id).HasColumnName("id");
+                authorModel.Property(x => x.Name).HasColumnName("name");
+                authorModel.Property(x => x.Age).HasColumnName("age");
             });
 
             modelBuilder.Entity<Category>(categoriesModel => 
             {
                 categoriesModel.ToTable("categories");
 
-                categoriesModel.HasKey(x => x.id);
+                categoriesModel.HasKey(x => x.Id);
 
-                categoriesModel.Property(x => x.id).HasColumnName("id");
-                categoriesModel.Property(x => x.name).HasColumnName("name");
+                categoriesModel.Property(x => x.Id).HasColumnName("id");
+                categoriesModel.Property(x => x.Name).HasColumnName("name");
             });
 
             modelBuilder.Entity<Joke>(jokesModel => {
 
                 jokesModel.ToTable("jokes");
 
-                jokesModel.HasKey(x => x.id);
+                jokesModel.HasKey(x => x.Id);
                 
-                jokesModel.Property(x => x.id).HasColumnName("id");
-                jokesModel.Property(x => x.authorId).HasColumnName("author_id");
-                jokesModel.Property(x => x.categoryId).HasColumnName("category_id");
-                jokesModel.Property(x => x.joke).HasColumnName("joke");
-                jokesModel.Property(x => x.createAt).HasColumnName("created_at");
-                jokesModel.Property(x => x.isApproved).HasColumnName("is_approved");
-                jokesModel.Property(x => x.likes).HasColumnName("likes");
-                jokesModel.Property(x => x.dislikes).HasColumnName("dislikes");
+                jokesModel.Property(x => x.Id).HasColumnName("id");
+                jokesModel.Property(x => x.AuthorId).HasColumnName("author_id");
+                jokesModel.Property(x => x.CategoryId).HasColumnName("category_id");
+                jokesModel.Property(x => x.JokeText).HasColumnName("joke");
+                jokesModel.Property(x => x.CreatedAt).HasColumnName("created_at");
+                jokesModel.Property(x => x.IsApproved).HasColumnName("is_approved");
+                jokesModel.Property(x => x.Likes).HasColumnName("likes");
+                jokesModel.Property(x => x.Dislikes).HasColumnName("dislikes");
 
                 // Foreign Key Relationships
-                jokesModel.HasOne(j => j.author)
-                    .WithMany(a => a.jokes)
-                    .HasForeignKey(j => j.authorId);
+                jokesModel.HasOne(j => j.Author)
+                    .WithMany(a => a.Jokes)
+                    .HasForeignKey(j => j.AuthorId);
 
-                jokesModel.HasOne(j => j.category)
-                    .WithMany(c => c.jokes)
-                    .HasForeignKey(j => j.categoryId);
+                jokesModel.HasOne(j => j.Category)
+                    .WithMany(c => c.Jokes)
+                    .HasForeignKey(j => j.CategoryId);
             });
         }
     }

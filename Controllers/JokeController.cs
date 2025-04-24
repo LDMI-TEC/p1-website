@@ -18,38 +18,39 @@ namespace poke_poke.Controllers
             }
 
             [HttpGet]
-            public async Task<ActionResult<IEnumerable<Joke>>> GetJokes()
+            public async Task<ActionResult<IEnumerable<JokeDto>>> GetJokes()
             {
-                return Ok(
-                    await _context.jokes
-                    .Include(j => j.author)
-                    .Include(j => j.category)
-                    .Where(j => j.isApproved)
-                    .ToListAsync());
+                var jokes = await _context.jokes
+                    .Include(j => j.Author)
+                    .Include(j => j.Category)
+                    .Where(j => j.IsApproved)
+                    .ToListAsync();
+
+                return Ok(jokes.Select(MapJokeToDto));
             }
 
             [HttpGet("{id}")]
-            public async Task<ActionResult<Joke>> GetJoke(int id)
+            public async Task<ActionResult<JokeDto>> GetJoke(int id)
             {
                 var joke = await _context.jokes
-                    .Include(j => j.author)
-                    .Include(j => j.category)
-                    .FirstOrDefaultAsync(j => j.id == id);
+                    .Include(j => j.Author)
+                    .Include(j => j.Category)
+                    .FirstOrDefaultAsync(j => j.Id == id);
 
                 if (joke == null) {
                     return NotFound();
                 }
                 
-                return Ok(joke);
+                return Ok(MapJokeToDto(joke));
             }
 
             [HttpGet("category/{catId}")]
-            public async Task<ActionResult<IEnumerable<Joke>>> GetJokesByCategory(int catId)
+            public async Task<ActionResult<IEnumerable<JokeDto>>> GetJokesByCategory(int catId)
             {
                 var jokes = await _context.jokes
-                    .Include(j => j.author)
-                    .Include(j => j.category)
-                    .Where(j => j.categoryId == catId && j.isApproved)
+                    .Include(j => j.Author)
+                    .Include(j => j.Category)
+                    .Where(j => j.CategoryId == catId && j.IsApproved)
                     .ToListAsync();
 
                 if (jokes.Count == 0)
@@ -57,16 +58,16 @@ namespace poke_poke.Controllers
                     return NotFound();
                 }
 
-                return Ok(jokes);
+                return Ok(jokes.Select(MapJokeToDto));
             }
 
             [HttpGet("author/{aId}")]
-            public async Task<ActionResult<IEnumerable<Joke>>> GetJokesByAuthor(int aId)
+            public async Task<ActionResult<IEnumerable<JokeDto>>> GetJokesByAuthor(int aId)
             {
                 var jokes = await _context.jokes
-                    .Include(j => j.author)
-                    .Include(j => j.category)
-                    .Where(j => j.authorId == aId && j.isApproved)
+                    .Include(j => j.Author)
+                    .Include(j => j.Category)
+                    .Where(j => j.AuthorId == aId && j.IsApproved)
                     .ToListAsync();
 
                 if (jokes.Count == 0)
@@ -74,27 +75,27 @@ namespace poke_poke.Controllers
                     return NotFound();
                 }
 
-                return Ok(jokes);
+                return Ok(jokes.Select(MapJokeToDto));
             }
 
             [HttpPost]
             public async Task<ActionResult> PostJoke(JokeCreateDto jokeDto)
             {
-                if (string.IsNullOrEmpty(jokeDto.authorName) || string.IsNullOrEmpty(jokeDto.joke)) 
+                if (string.IsNullOrEmpty(jokeDto.AuthorName) || string.IsNullOrEmpty(jokeDto.JokeText)) 
                 {
                     return BadRequest("Author name and joke is required");
                 }
 
                 // find if author already exists in the db
                 // if not create a new author with the information given in the request
-                var author = await _context.authors.FirstOrDefaultAsync(x => x.name == jokeDto.authorName);
+                var author = await _context.authors.FirstOrDefaultAsync(x => x.Name == jokeDto.AuthorName);
 
                 if (author == null)
                 {
                     author = new Author
                     {
-                        name = jokeDto.authorName,
-                        age = jokeDto.authorAge ?? 40
+                        Name = jokeDto.AuthorName,
+                        Age = jokeDto.AuthorAge ?? 40
                     };
 
                     _context.authors.Add(author);
@@ -104,35 +105,42 @@ namespace poke_poke.Controllers
                 // create joke
                 var joke = new Joke
                 {
-                    authorId = author.id,
-                    categoryId = jokeDto.categoryId,
-                    joke = jokeDto.joke,
-                    createAt = DateTime.Now,
-                    likes = 0,
-                    dislikes = 0,
-                    isApproved = false
+                    AuthorId = author.Id,
+                    CategoryId = jokeDto.CategoryId,
+                    JokeText = jokeDto.JokeText,
+                    CreatedAt = DateTime.Now,
+                    Likes = 0,
+                    Dislikes = 0,
+                    IsApproved = false
                 };
 
                 _context.Add(joke);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetJoke), new { id = joke.id }, joke);
+                // load related entities for response
+                await _context.Entry(joke).Reference(j => j.Author).LoadAsync();
+                await _context.Entry(joke).Reference(j => j.Category).LoadAsync();
+
+                return CreatedAtAction(nameof(GetJoke), new { id = joke.Id }, MapJokeToDto(joke));
             }
 
             [HttpPut("{id}")]
-            public async Task<ActionResult> PutJoke(int id, Joke joke)
+            public async Task<ActionResult> PutJoke(int id, JokeDto jokeDto)
             {
-                if (id != joke.id)
+                if (id != jokeDto.Id)
                 {
                     return BadRequest();
                 }
 
-                _context.Entry(joke).State = EntityState.Modified;
+                var joke = await _context.jokes.FindAsync(id);
+                if (joke == null)
+                {
+                    return NotFound();
+                }
 
-                // Don't allow the user to modify some properties createdAt, likes and dislikes
-                _context.Entry(joke).Property(x => x.createAt).IsModified = false;
-                _context.Entry(joke).Property(x => x.likes).IsModified = false;
-                _context.Entry(joke).Property(x => x.dislikes).IsModified = false;
+                // update the fields we want to allow updating
+                // We can potentially add more in the future if we would like to do so like isApproved
+                joke.JokeText = jokeDto.JokeText;
 
                 try 
                 {
@@ -164,10 +172,10 @@ namespace poke_poke.Controllers
                     return NotFound();
                 }
 
-                joke.likes++;
+                joke.Likes++;
                 await _context.SaveChangesAsync();
 
-                return Ok(new { likes = joke.likes, dislikes = joke.dislikes });
+                return Ok(new JokeLikesDto { Likes = joke.Likes, Dislikes = joke.Dislikes });
             }
 
             // increment dislikes and return object with the jokes likes and dislikes
@@ -181,10 +189,10 @@ namespace poke_poke.Controllers
                     return NotFound();
                 }
 
-                joke.dislikes++;
+                joke.Dislikes++;
                 await _context.SaveChangesAsync();
 
-                return Ok(new { likes = joke.likes, dislikes = joke.dislikes });
+                return Ok(new JokeLikesDto { Likes = joke.Likes, Dislikes = joke.Dislikes });
             }
 
             [HttpDelete("{id}")]
@@ -206,7 +214,34 @@ namespace poke_poke.Controllers
             // used internally in this class to see if a joke exists
             private bool JokeExists(int id)
             {
-                return _context.jokes.Any(j => j.id == id);
+                return _context.jokes.Any(j => j.Id == id);
+            }
+
+            // method to map entity to DTO
+            private JokeDto MapJokeToDto(Joke joke)
+            {
+                return new JokeDto
+                {
+                    Id = joke.Id,
+                    JokeText = joke.JokeText,
+                    CreatedAt = joke.CreatedAt,
+                    IsApproved = joke.IsApproved,
+                    Likes = joke.Likes,
+                    Dislikes = joke.Dislikes,
+                    Author = joke.Author != null
+                        ? new AuthorDto
+                        {
+                            Id = joke.Author.Id,
+                            Name = joke.Author.Name,
+                            Age = joke.Author.Age,
+                        } : null,
+                    Category = joke.Category != null
+                        ? new CategoryDto
+                        {
+                            Id = joke.Category.Id,
+                            Name = joke.Category.Name
+                        } : null
+                };
             }
         }
 }
