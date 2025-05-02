@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using poke_poke.Repository;
-using poke_poke.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
