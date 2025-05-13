@@ -6,7 +6,7 @@
     background-color: #586F7C;
  }
 
-/* Removes default cursor
+ /*Removes default cursor*/
 * {
     cursor: none !important;
 }
