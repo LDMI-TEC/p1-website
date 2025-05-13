@@ -26,6 +26,15 @@ builder.Services.AddDbContext<JokeAppContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// cores policies TODO: remove in Production!!!!
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAll", policy => {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 // app
 var app = builder.Build();
 
@@ -37,6 +46,10 @@ app.UseStaticFiles();
 
 // enable routing
 app.UseRouting();
+
+// add cores policy
+//TODO: Remove in production!!!
+app.UseCors("AllowAll");
 
 // enables authorization
 app.UseAuthorization();
