@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using poke_poke.Repository;
-using poke_poke.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// adding controlers
+// adding controllers
 builder.Services.AddControllers();
 
-// enable HTTPS redrirection
+// enable HTTPS redirection
 builder.Services.AddHttpsRedirection(options =>
 {
     options.HttpsPort = 7005;
@@ -19,9 +18,22 @@ builder.Services.AddDbContext<GameScoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+builder.Services.AddDbContext<JokeAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JokeConnection"))
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// cores policies TODO: remove in Production!!!!
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAll", policy => {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 // app
 var app = builder.Build();
@@ -35,7 +47,11 @@ app.UseStaticFiles();
 // enable routing
 app.UseRouting();
 
-// enalbes authorization
+// add cores policy
+//TODO: Remove in production!!!
+app.UseCors("AllowAll");
+
+// enables authorization
 app.UseAuthorization();
 
 // map Controller routes directly 
