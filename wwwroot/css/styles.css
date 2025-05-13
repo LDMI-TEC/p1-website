@@ -13,7 +13,7 @@
 
 /* Positions the cursor*/
 .custom-cursor {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 30px;
@@ -52,6 +52,66 @@ body:has(a:hover) #cursorDefault {
     padding-bottom: 20px;
 
     border: solid 2px black;
+}
+
+.mondaysContent {
+    border: solid 3px black;
+
+    margin: auto;
+    margin-top: 20px;
+
+    width: 50%;
+    height: 400px;
+
+    display: none;
+}
+
+.tuesdaysContent {
+    border: solid 3px black;
+
+    margin: auto;
+    margin-top: 20px;
+
+    width: 50%;
+    height: 400px;
+
+    display: none;
+}
+
+.wednesdaysContent {
+    border: solid 3px black;
+
+    margin: auto;
+    margin-top: 20px;
+
+    width: 50%;
+    height: 400px;
+
+    display: none;
+}
+
+.thursdaysContent {
+    border: solid 3px black;
+
+    margin: auto;
+    margin-top: 20px;
+
+    width: 50%;
+    height: 400px;
+
+    display: none;
+}
+
+.fridaysContent {
+    border: solid 3px black;
+
+    margin: auto;
+    margin-top: 20px;
+
+    width: 50%;
+    height: 400px;
+
+    display: none;
 }
 
 .header {
