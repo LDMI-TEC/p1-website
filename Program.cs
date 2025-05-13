@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using poke_poke.Repository;
-using poke_poke.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// adding controlers
+// adding controllers
 builder.Services.AddControllers();
 
-// enable HTTPS redrirection
+// enable HTTPS redirection
 builder.Services.AddHttpsRedirection(options =>
 {
     options.HttpsPort = 7005;
@@ -27,6 +26,15 @@ builder.Services.AddDbContext<JokeAppContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// cores policies TODO: remove in Production!!!!
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowAll", policy => {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 // app
 var app = builder.Build();
 
@@ -38,6 +46,10 @@ app.UseStaticFiles();
 
 // enable routing
 app.UseRouting();
+
+// add cores policy
+//TODO: Remove in production!!!
+app.UseCors("AllowAll");
 
 // enables authorization
 app.UseAuthorization();
