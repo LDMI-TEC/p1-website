@@ -31,6 +31,43 @@ a {
     border: solid 2px var(--details);
     border-radius: 5px;
 
-    margin-top: 14%;
+    margin-top: 10px;
     margin-left: 30%;
+}
+
+.questionIndex {
+    border: solid 1px black;
+    background-color: #686868;
+    border-radius: 3px;
+
+    height: 35px;
+    width: 35px;
+
+    margin-top: 14%;
+    margin-left: 69%;
+}
+
+.nextBtn, .prevBtn {
+    font-family: monospace;
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+
+    background-color: #686868;
+    border: solid 1px black;
+    border-radius: 3px;
+
+    text-align: center;
+
+    height: 30px;
+    width: 60px;
+
+    margin-right: 34%;
+}
+
+.flexBox {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 31%;
+    width: 100%;
 }
