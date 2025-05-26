@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: #3a3a3a;
+ }
+
+ :root {
+    --primary: #606583;
+    --secondary: #686868;
+    --details: #9B504C;
+}
+
+a {
+    font-family: monospace;
+    color: black;
+    text-decoration: none;
+}
+
+.topNav {
+    background-color: var(--secondary);
+    width: 100%;
+    height: 100px;
+    border-bottom: solid 2px white;
+}
+
+.quizBox {
+    height: 400px;
+    width: 800px;
+    background-color: #dbdbdb;
+    border: solid 2px var(--details);
+    border-radius: 5px;
+
+    margin-top: 14%;
+    margin-left: 30%;
+}
