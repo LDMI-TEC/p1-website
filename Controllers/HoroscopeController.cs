@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using poke_poke.Repository;
 
 namespace poke_poke.Controllers
 {
@@ -19,5 +20,5 @@ namespace poke_poke.Controllers
             var filePath = Path.Combine(_env.ContentRootPath, "horoskop.html");
             return PhysicalFile(filePath, "text/html");
         }
-    }
+    } 
 }

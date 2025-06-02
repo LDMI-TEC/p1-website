@@ -22,6 +22,11 @@ builder.Services.AddDbContext<JokeAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JokeConnection"))
 );
 
+
+builder.Services.AddDbContext<HoroscopeContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HoroScopeConnection"))
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
