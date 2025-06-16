@@ -47,8 +47,8 @@ var app = builder.Build();
 // init the DataOfTheDay singleton
 using (var scope = app.Services.CreateScope())
 {
-    var horoscopeContext = scope.ServiceProvider.GetRequiredService<HoroscopeContext>();
-    DataOfTheDay.GetInstance(horoscopeContext);
+    var contextOptions = scope.ServiceProvider.GetRequiredService<DbContextOptions<HoroscopeContext>>();
+    DataOfTheDay.GetInstance(contextOptions);
     System.Console.WriteLine("DataOfTheDay singleton initialized successfully!");
 }
 

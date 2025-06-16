@@ -15,14 +15,14 @@ namespace poke_poke.services
         private Dictionary<string, List<string>> HoroscopeOfTheDay;
         private System.Timers.Timer dailyTimer;
         private DateTime lastFetchData;
-        private readonly HoroscopeContext _context;
+        private readonly DbContextOptions<HoroscopeContext> _contextOptions;
 
-        private DataOfTheDay(HoroscopeContext context)
+        private DataOfTheDay(DbContextOptions<HoroscopeContext> contextOptions)
         {
             this.WordOfTheDay = "";
             this.HoroscopeOfTheDay = new Dictionary<string, List<string>>();
             this.lastFetchData = DateTime.MinValue;
-            _context = context;
+            _contextOptions = contextOptions;
 
             // add the initial fetch and timer setup
             FetchDailyData();
@@ -77,24 +77,26 @@ namespace poke_poke.services
             HoroscopeOfTheDay.Clear();
 
             var zodiacSigns = new[] { "Vædderen", "Tyren", "Tvillingerne", "Krebsen", "Løven", "Jomfruen",
-                             "SkorpVægtenionen", "Skorpionen", "Skytten", "Stenbukken", "Vandmanden", "Fiskene" };
+                             "Vægten", "Skorpionen", "Skytten", "Stenbukken", "Vandmanden", "Fiskene" };
+
+            // Create a new context instance for this operation
+            using var context = new HoroscopeContext(_contextOptions);
 
             foreach (var zodiac in zodiacSigns)
             {
                 try
                 {
-                    var horoscopes = await _context.horoscopes
+                    var horoscopes = await context.horoscopes
                         .Where(h => h.Zodiac.ToLower() == zodiac.ToLower())
                         .ToListAsync();
 
                     if (horoscopes.Any())
                     {
-
                         var random = new Random();
                         var randomHoroscope = horoscopes[random.Next(horoscopes.Count)];
 
-                        // create the list with (love, eonomy, advice)
-                        var horoscopeList = new List<String>
+                        // create the list with (love, economy, advice)
+                        var horoscopeList = new List<string>
                         {
                             randomHoroscope.LoveHoroscope,
                             randomHoroscope.EconomyHoroscope,
@@ -128,7 +130,7 @@ namespace poke_poke.services
             }
         }
 
-        public static DataOfTheDay GetInstance(HoroscopeContext context = null)
+        public static DataOfTheDay GetInstance(DbContextOptions<HoroscopeContext> contextOptions = null)
         {
             if (instance == null)
             {
@@ -136,11 +138,11 @@ namespace poke_poke.services
                 {
                     if (instance == null)
                     {
-                        if (context == null)
+                        if (contextOptions  == null)
                         {
                             throw new ArgumentException("HoroscopeContext must be provided for first initialization");
                         }
-                        instance = new DataOfTheDay(context);
+                        instance = new DataOfTheDay(contextOptions);
                     }
                 }
             }
