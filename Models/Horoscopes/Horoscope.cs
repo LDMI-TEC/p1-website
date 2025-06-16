@@ -16,7 +16,7 @@ namespace poke_poke.Models.Horoscopes
 
         [Required]
         public string EconomyHoroscope { get; set; }
-        
+
         [Required]
         public string AdviceHoroscope { get; set; }
     }

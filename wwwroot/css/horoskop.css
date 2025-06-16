@@ -18,6 +18,7 @@ body {
     text-align: center;
     font-size: 3rem;
     margin-bottom: 0.5rem;
+    padding-top: 100px; 
 }
 
 .zodiac-grid {
@@ -70,3 +71,29 @@ body {
     align-items: center;                                                              /* centrerer lodret */
     gap: 0.75rem;                                                                     /* afstand mellem billede og tekst */
 }
+
+
+#horoskop-billede {
+    display: block;                                                                   /* Gør billedet til et blok-element, så margin: auto virker */
+    margin: 20px auto;                                                                /* Sætter 20px margin top/bund og auto margin venstre/højre for at centrere */
+}
+
+
+#horoskop-tekst {
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto; 
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;                                                               /* Centrerer indhold horisontalt i flex-containeren */
+    justify-content: center;                                                           /* Centrerer indhold vertikalt (hvis containeren har en defineret højde) */
+    min-height: calc(100vh - 100px);                                                   
+    padding: 20px;
+    text-align: center; 
