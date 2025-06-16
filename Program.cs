@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using poke_poke.Repository;
+using poke_poke.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,12 +44,20 @@ builder.Services.AddCors(options => {
 // app
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// init the DataOfTheDay singleton
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var horoscopeContext = scope.ServiceProvider.GetRequiredService<HoroscopeContext>();
+    DataOfTheDay.GetInstance(horoscopeContext);
+    System.Console.WriteLine("DataOfTheDay singleton initialized successfully!");
 }
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
 // add cores policy
 //TODO: Remove in production!!!
