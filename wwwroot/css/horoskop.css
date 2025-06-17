@@ -72,28 +72,70 @@ body {
     gap: 0.75rem;                                                                     /* afstand mellem billede og tekst */
 }
 
-
-#horoskop-billede {
-    display: block;                                                                   /* Gør billedet til et blok-element, så margin: auto virker */
-    margin: 20px auto;                                                                /* Sætter 20px margin top/bund og auto margin venstre/højre for at centrere */
+/* FIXED: Removed duplicate styling and improved result section */
+#result {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    padding-top: 50px; /* ADDED: Less padding from top to move content up */
+    max-width: 800px; /* ADDED: Limit width for better readability */
+    margin: 0 auto; /* ADDED: Center the result container */
 }
 
+/* ADDED: Style for result title */
+#result h1 {
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    padding-top: 0; /* Override the global h1 padding-top */
+}
 
-#horoskop-tekst {
-    text-align: center;
-    max-width: 800px;
-    margin: 20px auto; 
+/* ADDED: Style for result headings */
+#result h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* FIXED: Corrected selector syntax and improved styling */
+#result p {
     color: white;
     font-size: 1.2rem;
     line-height: 1.6;
+    text-align: center;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3); /* ADDED: Semi-transparent background for better readability */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+#horoskop-billede {
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px; /* ADDED: Rounded corners */
+}
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;                                                               /* Centrerer indhold horisontalt i flex-containeren */
-    justify-content: center;                                                           /* Centrerer indhold vertikalt (hvis containeren har en defineret højde) */
-    min-height: calc(100vh - 100px);                                                   
-    padding: 20px;
-    text-align: center; 
+/* ADDED: Style for back button */
+#back-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    font-family: 'Great Vibes', cursive;
+}
+
+#back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
