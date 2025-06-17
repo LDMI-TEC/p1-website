@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using poke_poke.Repository;
+using poke_poke.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,11 @@ builder.Services.AddDbContext<JokeAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("JokeConnection"))
 );
 
+
+builder.Services.AddDbContext<HoroscopeContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HoroScopeConnection"))
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -38,6 +44,25 @@ builder.Services.AddCors(options => {
 // app
 var app = builder.Build();
 
+// init the DataOfTheDay singleton
+using (var scope = app.Services.CreateScope())
+{
+    var contextOptions = scope.ServiceProvider.GetRequiredService<DbContextOptions<HoroscopeContext>>();
+    DataOfTheDay.GetInstance(contextOptions);
+    System.Console.WriteLine("DataOfTheDay singleton initialized successfully!");
+}
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+// add cores policy
+//TODO: Remove in production!!!
+app.UseCors("AllowAll");
+
 // serves default files this should be called before UseStaticFiles() method
 app.UseDefaultFiles();
 
@@ -47,22 +72,8 @@ app.UseStaticFiles();
 // enable routing
 app.UseRouting();
 
-// add cores policy
-//TODO: Remove in production!!!
-app.UseCors("AllowAll");
-
-// enables authorization
-app.UseAuthorization();
-
 // map Controller routes directly 
 app.MapControllers();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // enforces HTTPS
 //app.UseHttpsRedirection();
