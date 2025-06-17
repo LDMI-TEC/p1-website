@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Dagens Horoskop</title>
+    <link rel="icon" href="/wwwroot/resources/tec-logo.png" type="image/icon type">
+    <link rel="stylesheet" href="./css/horoskop.css">
+    <meta name="author" content="P1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="./js/horoscope/horoscope.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Dagens horoskop</h1>
+        <p>Få dit daglige horoskop her!</p>
+        <a href="index.html">Home</a>
+    </header>
+
+    <main>
+        <div class="zodiac-grid">
+
+            <div class="zodiac-card" id="Vædderen">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/vædder.png" alt="Vædderen" />
+                    <div class="zodiac-name">Vædder</div>
+                </div>
+            </div>
+          
+            <div class="zodiac-card" id="Tyren">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/Tyr.png" alt="Tyren" />
+                    <div class="zodiac-name">Tyr</div>
+                </div>
+            </div>
+
+            <div class="zodiac-card" id="Tvillingerne">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/Tvilling.png" alt="Tvillingerne" />
+                    <div class="zodiac-name">Tvillinger</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Krebsen">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/Krebs.png" alt="Krebsen" />
+                    <div class="zodiac-name">Krebs</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Løven">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/løven.png" alt="Løven" />
+                    <div class="zodiac-name">Løve</div>
+                </div>
+            </div>
+
+            <div class="zodiac-card" id="Jomfruen">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/jomfru.png" alt="Jomfruen" />
+                    <div class="zodiac-name">Jomfru</div>
+                </div>
+            </div>
+            
+           <div class="zodiac-card" id="Vægten">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/Vægt.png" alt="Vægten" />
+                    <div class="zodiac-name">Vægten</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Skorpionen">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/skorpion.png" alt="Skorpionen" />
+                    <div class="zodiac-name">Skorpion</div>
+                </div>
+            </div>
+            
+           <div class="zodiac-card" id="Skytten">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/Skytte.png" alt="Skytten" />
+                    <div class="zodiac-name">Skytten</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Stenbukken">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/stenbuk.png" alt="Stenbukken" />
+                    <div class="zodiac-name">Stenbuk</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Vandmanden">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/vandmand.png" alt="Vandmanden" />
+                    <div class="zodiac-name">Vandmand</div>
+                </div>
+            </div>
+            
+            <div class="zodiac-card" id="Fiskene">
+                <div class="zodiac-content">
+                    <img src="Resources/Horosop-picture/fisk.png" alt="Fiskene" />
+                    <div class="zodiac-name">Fisk</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="result">
+            <h1 id="overskrift"></h1>
+            <img id="horoskop-billede" src="" alt="Stjernetegnbillede" style="width: 200px;">
+            <h3>Love Advice</h3>
+            <p id="love-advice"></p>
+            <h3>Financial Advice</h3>
+            <p id="financial-advice"></p>
+            <h3>General Advice</h3>
+            <p id="general-advice"></p>
+            <button id="back-button">Tilbage</button>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+    <div class="custom-cursor site-wide">
+        <img src="/Resources/cursor-default.png" id="cursorDefault"></img>
+    </div>
+    <script src="/js/script.js" type="module"></script>
+</body>
+</html>
