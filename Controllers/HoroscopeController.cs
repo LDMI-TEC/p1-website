@@ -17,7 +17,7 @@ namespace poke_poke.Controllers
         [HttpGet]
         public IActionResult Horoscope()
         {
-            var filePath = Path.Combine(_env.ContentRootPath, "horoskop.html");
+            var filePath = Path.Combine(_env.WebRootPath, "horoskop.html");
             return PhysicalFile(filePath, "text/html");
         }
     } 
