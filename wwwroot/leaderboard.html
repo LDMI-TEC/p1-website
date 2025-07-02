@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset ="utf-8">
+    <title>Poke Poke</title>
+    <link rel="stylesheet" href="/css/poke-styles.css">
+    <link rel="stylesheet" href="/css/leaderboard.css">
+    <!--TODO: Add a better logo-->
+    <link rel="icon" href="" id="logo">
+    <meta name="author" content="HelloHaruSystem">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/pokemon-game/leaderboard.js" type="module" defer></script>
+</head>
+
+<body>
+<header>
+    <div class="navbar">
+        <a href="/poke" id="page-title"><h1><strong>Welcome to the PokeQuiz!</strong></h1></a>
+        <a href="https://bulbapedia.bulbagarden.net/wiki/Piplup_(Pok%C3%A9mon)" target="_blank"><img src="" alt="Pochama" id="pochama"></a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/poke">Poke Game</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="container">
+    <!--Left side bar-->
+    <aside class="sidebar left-sidebar">
+        <p>left sidebar content</p>
+    </aside>
+
+    <!--Main content-->
+    <main>
+        <div class="leaderboard-main">
+            <h2>Leaderboard</h2>
+            <form id="search-score" action="GET" autocomplete="off">
+                <label for="search-name">Search for score</label>
+                <input type="text" id="search-name" name="search-name" max="25" placeholder="Enter name here...">
+                <input type="submit" value="search!">
+            </form>
+            <br>
+            <ol id="score-list">
+                
+            </ol>
+            <button class="score-page-button">previous page</button>
+            <button class="score-page-button">Next page</button>
+        </div>
+    </main>
+
+    <!--Right side bar-->
+    <aside class="sidebar right-sidebar">
+        <p>Right SideBar Content</p>
+    </aside>
+</div>
+
+<footer>
+    <div class="info">
+        <h4>Made by Halfdan using <a href="https://pokeapi.co/" target="_blank">PokeApi</a></h3>
+            <h5>My Links:</h5>
+            <ul>
+                <li><a href="https://github.com/HelloHaruSystem" target="_blank">Github</a></li>
+            </ul>
+    </div>
+</footer>
+<!--Used for cursor-->
+<div class="custom-cursor site-wide">
+    <img src="/Resources/cursor-default.png" id="cursorDefault"></img>
+</div>
+</body>
+</html>

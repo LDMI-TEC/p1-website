@@ -1,0 +1,141 @@
+body {
+    background-image: url(../Resources/Horosop-picture/forside2.png);   
+    background-size: cover;                                                        /* billedet fylder hele baggrunden */
+    background-position: center;                                                   /* centrerer billedet */
+    background-repeat: no-repeat;                                                  /* forhindrer gentagelse */
+    min-height: 100vh;                                                             /* sikrer, at baggrunden dækker hele skærmen */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ h1 {
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    padding-top: 100px; 
+}
+
+.zodiac-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    justify-items: center;
+}
+
+.zodiac-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 250px;
+}
+
+.zodiac-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.zodiac-card img {
+    width: 100px;          
+    height: 100px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 0.5rem auto;                                                          /* centrerer billedet og giver lidt luft under */
+}
+
+.zodiac-name {
+    font-size: 1.9rem;
+    font-family: 'Great Vibes', cursive;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.zodiac-content {
+    display: flex;
+    align-items: center;                                                              /* centrerer lodret */
+    gap: 0.75rem;                                                                     /* afstand mellem billede og tekst */
+}
+
+/* FIXED: Removed duplicate styling and improved result section */
+#result {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    padding-top: 50px; /* ADDED: Less padding from top to move content up */
+    max-width: 800px; /* ADDED: Limit width for better readability */
+    margin: 0 auto; /* ADDED: Center the result container */
+}
+
+/* ADDED: Style for result title */
+#result h1 {
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    padding-top: 0; /* Override the global h1 padding-top */
+}
+
+/* ADDED: Style for result headings */
+#result h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* FIXED: Corrected selector syntax and improved styling */
+#result p {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3); /* ADDED: Semi-transparent background for better readability */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#horoskop-billede {
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px; /* ADDED: Rounded corners */
+}
+
+/* ADDED: Style for back button */
+#back-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    font-family: 'Great Vibes', cursive;
+}
+
+#back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
